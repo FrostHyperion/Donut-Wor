@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-donutworld-staging-204338-authRole",
+      "UnauthRoleArn": "arn:aws:iam::989938562533:role/amplify-donutworld-staging-204338-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::989938562533:role/amplify-donutworld-staging-204338-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-donutworld-staging-204338-deployment",
+      "UnauthRoleName": "amplify-donutworld-staging-204338-unauthRole",
+      "StackName": "amplify-donutworld-staging-204338",
+      "StackId": "arn:aws:cloudformation:ca-central-1:989938562533:stack/amplify-donutworld-staging-204338/a9bc8a40-75a6-11ed-84a2-0a4f3f0c3a1a",
+      "AmplifyAppId": "d10pu4rt6zki2k"
+    },
+    "categories": {
+      "auth": {
+        "DonutWorld": {}
+      }
+    }
+  }
+}

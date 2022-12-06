@@ -1,0 +1,65 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-donutworld-staging-204338-authRole",
+      "UnauthRoleArn": "arn:aws:iam::989938562533:role/amplify-donutworld-staging-204338-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::989938562533:role/amplify-donutworld-staging-204338-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-donutworld-staging-204338-deployment",
+      "UnauthRoleName": "amplify-donutworld-staging-204338-unauthRole",
+      "StackName": "amplify-donutworld-staging-204338",
+      "StackId": "arn:aws:cloudformation:ca-central-1:989938562533:stack/amplify-donutworld-staging-204338/a9bc8a40-75a6-11ed-84a2-0a4f3f0c3a1a",
+      "AmplifyAppId": "d10pu4rt6zki2k"
+    }
+  },
+  "auth": {
+    "DonutWorld": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "GIVEN_NAME",
+          "FAMILY_NAME",
+          "PREFERRED_USERNAME"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donutworld-staging-204338-deployment/amplify-cfn-templates/auth/DonutWorld-cloudformation-template.json",
+        "logicalId": "authDonutWorld"
+      },
+      "lastPushTimeStamp": "2022-12-06T20:49:58.340Z",
+      "output": {
+        "UserPoolId": "ca-central-1_LNumWNe6Y",
+        "AppClientIDWeb": "6o7tlopjbpctjqu184nepq8pjj",
+        "AppClientID": "oil5rlj74a35693i60a2rlqor",
+        "IdentityPoolId": "ca-central-1:7b698857-8bd4-4cea-bac5-587acdc5eb96",
+        "UserPoolArn": "arn:aws:cognito-idp:ca-central-1:989938562533:userpool/ca-central-1_LNumWNe6Y",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "DonutWorld"
+      },
+      "lastPushDirHash": "lvMrJ3i8hx0BJLhezsFrYDQCvLc="
+    }
+  }
+}
