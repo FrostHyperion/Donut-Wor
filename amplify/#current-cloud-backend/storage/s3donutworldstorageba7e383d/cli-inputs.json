@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3donutworldstorageba7e383d",
+  "bucketName": "donutworld-storage-ba7e383d",
+  "policyUUID": "ac626ed5",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

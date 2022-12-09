@@ -1,0 +1,11 @@
+.about {
+  width: 100%;
+}
+.about h1 {
+  text-align: center;
+}
+.card {
+  width: 70%;
+  display: flex;
+  margin: 0 auto;
+}

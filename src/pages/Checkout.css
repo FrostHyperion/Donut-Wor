@@ -1,0 +1,27 @@
+.checkout {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+.checkout .left {
+  width: 60%;
+}
+.checkout .right {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.checkout .right .address {
+  width: 100%;
+  height: 100%;
+}
+.checkout .checkout-details {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.checkout .checkout-details span {
+  font-size: 25px;
+  font-weight: bold;
+}

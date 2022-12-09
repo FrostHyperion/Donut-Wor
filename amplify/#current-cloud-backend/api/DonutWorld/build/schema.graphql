@@ -1,0 +1,458 @@
+
+type Favorite @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  Donut: Donut
+  donut_id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  favoriteDonutId: ID
+  owner: String
+}
+
+type Cart @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  CartItems(filter: ModelCartItemFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCartItemConnection
+  CartItems_id: [ID!]
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  owner: String
+}
+
+type CartItem @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  donut_id: ID!
+  quantity: Int!
+  cartID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  owner: String
+}
+
+type Donut @aws_api_key @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  name: String
+  image: String!
+  description: String!
+  price: Float!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  owner: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelFavoriteConnection @aws_iam @aws_cognito_user_pools {
+  items: [Favorite]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelFavoriteFilterInput {
+  id: ModelIDInput
+  donut_id: ModelIDInput
+  and: [ModelFavoriteFilterInput]
+  or: [ModelFavoriteFilterInput]
+  not: ModelFavoriteFilterInput
+  favoriteDonutId: ModelIDInput
+}
+
+type Query {
+  getFavorite(id: ID!): Favorite @aws_iam @aws_cognito_user_pools
+  listFavorites(filter: ModelFavoriteFilterInput, limit: Int, nextToken: String): ModelFavoriteConnection @aws_iam @aws_cognito_user_pools
+  syncFavorites(filter: ModelFavoriteFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelFavoriteConnection @aws_iam @aws_cognito_user_pools
+  getCart(id: ID!): Cart @aws_iam @aws_cognito_user_pools
+  listCarts(filter: ModelCartFilterInput, limit: Int, nextToken: String): ModelCartConnection @aws_iam @aws_cognito_user_pools
+  syncCarts(filter: ModelCartFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCartConnection @aws_iam @aws_cognito_user_pools
+  getCartItem(id: ID!): CartItem @aws_iam @aws_cognito_user_pools
+  listCartItems(filter: ModelCartItemFilterInput, limit: Int, nextToken: String): ModelCartItemConnection @aws_iam @aws_cognito_user_pools
+  syncCartItems(filter: ModelCartItemFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCartItemConnection @aws_iam @aws_cognito_user_pools
+  cartItemsByCartID(cartID: ID!, sortDirection: ModelSortDirection, filter: ModelCartItemFilterInput, limit: Int, nextToken: String): ModelCartItemConnection @aws_iam @aws_cognito_user_pools
+  getDonut(id: ID!): Donut @aws_api_key @aws_iam @aws_cognito_user_pools
+  listDonuts(filter: ModelDonutFilterInput, limit: Int, nextToken: String): ModelDonutConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncDonuts(filter: ModelDonutFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelDonutConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+input ModelFavoriteConditionInput {
+  donut_id: ModelIDInput
+  and: [ModelFavoriteConditionInput]
+  or: [ModelFavoriteConditionInput]
+  not: ModelFavoriteConditionInput
+  favoriteDonutId: ModelIDInput
+}
+
+input CreateFavoriteInput {
+  id: ID
+  donut_id: ID!
+  _version: Int
+  favoriteDonutId: ID
+}
+
+input UpdateFavoriteInput {
+  id: ID!
+  donut_id: ID
+  _version: Int
+  favoriteDonutId: ID
+}
+
+input DeleteFavoriteInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createFavorite(input: CreateFavoriteInput!, condition: ModelFavoriteConditionInput): Favorite @aws_iam @aws_cognito_user_pools
+  updateFavorite(input: UpdateFavoriteInput!, condition: ModelFavoriteConditionInput): Favorite @aws_iam @aws_cognito_user_pools
+  deleteFavorite(input: DeleteFavoriteInput!, condition: ModelFavoriteConditionInput): Favorite @aws_iam @aws_cognito_user_pools
+  createCart(input: CreateCartInput!, condition: ModelCartConditionInput): Cart @aws_iam @aws_cognito_user_pools
+  updateCart(input: UpdateCartInput!, condition: ModelCartConditionInput): Cart @aws_iam @aws_cognito_user_pools
+  deleteCart(input: DeleteCartInput!, condition: ModelCartConditionInput): Cart @aws_iam @aws_cognito_user_pools
+  createCartItem(input: CreateCartItemInput!, condition: ModelCartItemConditionInput): CartItem @aws_iam @aws_cognito_user_pools
+  updateCartItem(input: UpdateCartItemInput!, condition: ModelCartItemConditionInput): CartItem @aws_iam @aws_cognito_user_pools
+  deleteCartItem(input: DeleteCartItemInput!, condition: ModelCartItemConditionInput): CartItem @aws_iam @aws_cognito_user_pools
+  createDonut(input: CreateDonutInput!, condition: ModelDonutConditionInput): Donut @aws_iam @aws_cognito_user_pools
+  updateDonut(input: UpdateDonutInput!, condition: ModelDonutConditionInput): Donut @aws_iam @aws_cognito_user_pools
+  deleteDonut(input: DeleteDonutInput!, condition: ModelDonutConditionInput): Donut @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionFavoriteFilterInput {
+  id: ModelSubscriptionIDInput
+  donut_id: ModelSubscriptionIDInput
+  and: [ModelSubscriptionFavoriteFilterInput]
+  or: [ModelSubscriptionFavoriteFilterInput]
+}
+
+type Subscription {
+  onCreateFavorite(filter: ModelSubscriptionFavoriteFilterInput, owner: String): Favorite @aws_subscribe(mutations: ["createFavorite"]) @aws_iam @aws_cognito_user_pools
+  onUpdateFavorite(filter: ModelSubscriptionFavoriteFilterInput, owner: String): Favorite @aws_subscribe(mutations: ["updateFavorite"]) @aws_iam @aws_cognito_user_pools
+  onDeleteFavorite(filter: ModelSubscriptionFavoriteFilterInput, owner: String): Favorite @aws_subscribe(mutations: ["deleteFavorite"]) @aws_iam @aws_cognito_user_pools
+  onCreateCart(filter: ModelSubscriptionCartFilterInput, owner: String): Cart @aws_subscribe(mutations: ["createCart"]) @aws_iam @aws_cognito_user_pools
+  onUpdateCart(filter: ModelSubscriptionCartFilterInput, owner: String): Cart @aws_subscribe(mutations: ["updateCart"]) @aws_iam @aws_cognito_user_pools
+  onDeleteCart(filter: ModelSubscriptionCartFilterInput, owner: String): Cart @aws_subscribe(mutations: ["deleteCart"]) @aws_iam @aws_cognito_user_pools
+  onCreateCartItem(filter: ModelSubscriptionCartItemFilterInput, owner: String): CartItem @aws_subscribe(mutations: ["createCartItem"]) @aws_iam @aws_cognito_user_pools
+  onUpdateCartItem(filter: ModelSubscriptionCartItemFilterInput, owner: String): CartItem @aws_subscribe(mutations: ["updateCartItem"]) @aws_iam @aws_cognito_user_pools
+  onDeleteCartItem(filter: ModelSubscriptionCartItemFilterInput, owner: String): CartItem @aws_subscribe(mutations: ["deleteCartItem"]) @aws_iam @aws_cognito_user_pools
+  onCreateDonut(filter: ModelSubscriptionDonutFilterInput, owner: String): Donut @aws_subscribe(mutations: ["createDonut"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateDonut(filter: ModelSubscriptionDonutFilterInput, owner: String): Donut @aws_subscribe(mutations: ["updateDonut"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteDonut(filter: ModelSubscriptionDonutFilterInput, owner: String): Donut @aws_subscribe(mutations: ["deleteDonut"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+type ModelCartConnection @aws_iam @aws_cognito_user_pools {
+  items: [Cart]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelCartFilterInput {
+  id: ModelIDInput
+  CartItems_id: ModelIDInput
+  and: [ModelCartFilterInput]
+  or: [ModelCartFilterInput]
+  not: ModelCartFilterInput
+}
+
+input ModelCartConditionInput {
+  CartItems_id: ModelIDInput
+  and: [ModelCartConditionInput]
+  or: [ModelCartConditionInput]
+  not: ModelCartConditionInput
+}
+
+input CreateCartInput {
+  id: ID
+  CartItems_id: [ID!]
+  _version: Int
+}
+
+input UpdateCartInput {
+  id: ID!
+  CartItems_id: [ID!]
+  _version: Int
+}
+
+input DeleteCartInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionCartFilterInput {
+  id: ModelSubscriptionIDInput
+  CartItems_id: ModelSubscriptionIDInput
+  and: [ModelSubscriptionCartFilterInput]
+  or: [ModelSubscriptionCartFilterInput]
+}
+
+type ModelCartItemConnection @aws_iam @aws_cognito_user_pools {
+  items: [CartItem]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelCartItemFilterInput {
+  id: ModelIDInput
+  donut_id: ModelIDInput
+  quantity: ModelIntInput
+  cartID: ModelIDInput
+  and: [ModelCartItemFilterInput]
+  or: [ModelCartItemFilterInput]
+  not: ModelCartItemFilterInput
+}
+
+input ModelCartItemConditionInput {
+  donut_id: ModelIDInput
+  quantity: ModelIntInput
+  cartID: ModelIDInput
+  and: [ModelCartItemConditionInput]
+  or: [ModelCartItemConditionInput]
+  not: ModelCartItemConditionInput
+}
+
+input CreateCartItemInput {
+  id: ID
+  donut_id: ID!
+  quantity: Int!
+  cartID: ID!
+  _version: Int
+}
+
+input UpdateCartItemInput {
+  id: ID!
+  donut_id: ID
+  quantity: Int
+  cartID: ID
+  _version: Int
+}
+
+input DeleteCartItemInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionCartItemFilterInput {
+  id: ModelSubscriptionIDInput
+  donut_id: ModelSubscriptionIDInput
+  quantity: ModelSubscriptionIntInput
+  cartID: ModelSubscriptionIDInput
+  and: [ModelSubscriptionCartItemFilterInput]
+  or: [ModelSubscriptionCartItemFilterInput]
+}
+
+type ModelDonutConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
+  items: [Donut]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelDonutFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  image: ModelStringInput
+  description: ModelStringInput
+  price: ModelFloatInput
+  and: [ModelDonutFilterInput]
+  or: [ModelDonutFilterInput]
+  not: ModelDonutFilterInput
+}
+
+input ModelDonutConditionInput {
+  name: ModelStringInput
+  image: ModelStringInput
+  description: ModelStringInput
+  price: ModelFloatInput
+  and: [ModelDonutConditionInput]
+  or: [ModelDonutConditionInput]
+  not: ModelDonutConditionInput
+}
+
+input CreateDonutInput {
+  id: ID
+  name: String
+  image: String!
+  description: String!
+  price: Float!
+  _version: Int
+}
+
+input UpdateDonutInput {
+  id: ID!
+  name: String
+  image: String
+  description: String
+  price: Float
+  _version: Int
+}
+
+input DeleteDonutInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionDonutFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  image: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  price: ModelSubscriptionFloatInput
+  and: [ModelSubscriptionDonutFilterInput]
+  or: [ModelSubscriptionDonutFilterInput]
+}
+

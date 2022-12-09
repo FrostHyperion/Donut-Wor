@@ -1,0 +1,51 @@
+.details {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+}
+.details .right {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 400px;
+}
+.details .right .inner-left {
+  margin: 10px;
+}
+.details .right .inner-left > p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.details .right .inner-right {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.details .right .inner-right svg {
+  font-size: 30px;
+  color: red;
+}
+.details .addToCartContainer .addToCart {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+.details .addToCartContainer .increase,
+.details .addToCartContainer .decrease {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.details .addToCartContainer span {
+  font-size: 20px;
+}

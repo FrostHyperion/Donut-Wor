@@ -45,11 +45,6 @@
           "EMAIL"
         ]
       },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donutworld-staging-204338-deployment/amplify-cfn-templates/auth/DonutWorld-cloudformation-template.json",
-        "logicalId": "authDonutWorld"
-      },
-      "lastPushTimeStamp": "2022-12-06T20:49:58.340Z",
       "output": {
         "UserPoolId": "ca-central-1_LNumWNe6Y",
         "AppClientIDWeb": "6o7tlopjbpctjqu184nepq8pjj",
@@ -59,7 +54,73 @@
         "IdentityPoolName": "testAuthIdentityPool__staging",
         "UserPoolName": "DonutWorld"
       },
-      "lastPushDirHash": "lvMrJ3i8hx0BJLhezsFrYDQCvLc="
+      "lastPushTimeStamp": "2022-12-09T05:48:53.150Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donutworld-staging-204338-deployment/amplify-cfn-templates/auth/DonutWorld-cloudformation-template.json",
+        "logicalId": "authDonutWorld"
+      }
+    }
+  },
+  "api": {
+    "DonutWorld": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "DonutWorld",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authDonutWorld"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 30,
+                "description": "api key description"
+              }
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "43rc2rkv6bgyfih2rcjuexvxou",
+        "GraphQLAPIEndpointOutput": "https://p4p4y2huqrendfhhgczpe2xd6q.appsync-api.ca-central-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-hcoogdmolnhyledjwfx676cb3u"
+      },
+      "lastPushTimeStamp": "2022-12-09T05:48:53.203Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donutworld-staging-204338-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiDonutWorld"
+      },
+      "lastPushDirHash": "9nj2SJ0KoCKb7iHzRGJq6Cf5PMs="
+    }
+  },
+  "storage": {
+    "s3donutworldstorageba7e383d": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "BucketName": "donutworld-storage-ba7e383d204338-staging",
+        "Region": "ca-central-1"
+      },
+      "lastPushTimeStamp": "2022-12-09T05:48:53.154Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donutworld-staging-204338-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3donutworldstorageba7e383d"
+      }
     }
   }
 }

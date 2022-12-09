@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "DonutWorld",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authDonutWorld",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2022-12-09T05:44:10.890Z"
+}

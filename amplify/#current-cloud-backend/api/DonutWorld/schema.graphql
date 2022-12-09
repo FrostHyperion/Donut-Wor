@@ -1,0 +1,26 @@
+type Favorite @model @auth(rules: [{allow: groups, groups: ["User"], operations: [read, delete, update, create]}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: owner}]) {
+  id: ID!
+  Donut: Donut @hasOne
+  donut_id: ID!
+}
+
+type Cart @model @auth(rules: [{allow: owner}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["User"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  CartItems: [CartItem] @hasMany(indexName: "byCart", fields: ["id"])
+  CartItems_id: [ID!]
+}
+
+type CartItem @model @auth(rules: [{allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["User"], operations: [read, create, update, delete]}, {allow: owner}]) {
+  id: ID!
+  donut_id: ID!
+  quantity: Int!
+  cartID: ID! @index(name: "byCart")
+}
+
+type Donut @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["User"], operations: [read]}, {allow: owner}]) {
+  id: ID!
+  name: String
+  image: String!
+  description: String!
+  price: Float!
+} 

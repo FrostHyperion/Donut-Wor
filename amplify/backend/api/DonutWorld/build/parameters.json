@@ -1,0 +1,14 @@
+{
+    "AppSyncApiName": "DonutWorld",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authDonutWorld",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "AuthModeLastUpdated": "2022-12-09T05:44:10.890Z",
+    "S3DeploymentBucket": "amplify-donutworld-staging-204338-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/0493aa4c624a141a58ddf60d0942dcdb97ba423a"
+}

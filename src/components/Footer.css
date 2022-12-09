@@ -1,0 +1,32 @@
+.footer {
+  position: relative;
+  margin: 0px;
+  background-color: #f5f5f5;
+  padding: 0px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: left;
+}
+
+.sub {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sub p {
+  margin: 3px;
+}
+
+@media screen and (max-width: 720px) {
+  .sub {
+    flex-direction: column;
+  }
+}
+ul li a {
+  text-decoration: none;
+  list-style-type: none;
+}

@@ -1,0 +1,50 @@
+.account {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 60%;
+}
+.account .sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.account .sidebar button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.account .sidebar .signOut {
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 5px 5px 15px rgba(176, 173, 173, 0.8),
+    -5px -5px 15px rgba(161, 158, 158, 0.8);
+}
+.account .profileInfo {
+  width: 70%;
+}
+.account .profileInfo div {
+  padding: 20px;
+}
+.account .profileInfo div p {
+  font-size: 25px;
+}
+.account .profileInfo div p span {
+  font-weight: bold;
+}
+.account .changeUserInfoFormContainer {
+  width: 70%;
+  padding: 0;
+}
+.account .changeUserInfoFormContainer form {
+  height: 50%;
+}
+.account .changeUserInfoForm .inputField {
+  margin: 5px;
+}

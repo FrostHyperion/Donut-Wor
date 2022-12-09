@@ -1,0 +1,24 @@
+.donutCart {
+  display: flex;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  height: 200px;
+  width: 100%;
+  margin: 20px 0;
+}
+.donutCart img {
+  height: 100%;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.donutCart .right {
+  padding: 20px;
+}
+.donutCart .inner-right {
+  display: flex;
+}
+.donutCart svg {
+  font-size: 30px;
+  color: red;
+}
